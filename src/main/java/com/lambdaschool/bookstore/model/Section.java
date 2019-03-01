@@ -12,58 +12,30 @@ public class Section
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long sectionid;
+    private long section;
 
-    private String sectionname;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "authorid")
-    @JsonIgnoreProperties("sections")
-    private Authors authors;
-
-    @ManyToMany(mappedBy = "sections")
-    @JsonIgnoreProperties("sections")
-    private Set<Book> books = new HashSet<>();
 
     public Section(){}
 
-    public long getsectionid()
+    public long getsection()
     {
-        return sectionid;
+        return section;
     }
 
-    public void setsectionid(long sectionid)
+    public void setsection(long section)
     {
-        this.sectionid = sectionid;
+        this.section = section;
     }
 
-    public String getsectionname()
+    public String getname()
     {
-        return sectionname;
+        return name;
     }
 
-    public void setsectionname(String sectionname)
+    public void setname(String name)
     {
-        this.sectionname = sectionname;
-    }
-
-    public Authors getAuthors()
-    {
-        return authors;
-    }
-
-    public void setAuthors(Authors authors)
-    {
-        this.authors = authors;
-    }
-
-    public Set<Book> getBooks()
-    {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books)
-    {
-        this.books = books;
+        this.name = name;
     }
 }

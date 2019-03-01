@@ -13,28 +13,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/students/", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/books/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class Bookcontroller
 {
     @Autowired
     Bookrepository bookrepos;
 
-    // /students/students
-    @GetMapping("/students")
-    public List<Book> listAllStudents()
+    // /books/books
+    @GetMapping("/books")
+    public List<Book> listAllBooks()
     {
         return bookrepos.findAll();
     }
 
-    @GetMapping("/id/{studentid}")
-    public List<Book> getStudentByStudentId(@PathVariable long studentid)
+    @GetMapping("/id/{bookid}")
+    public List<Book> getStudentByStudentId(@PathVariable long bookid)
     {
-        return bookrepos.findById(studentid).stream().collect(Collectors.toList());
+        return bookrepos.findById(bookid).stream().collect(Collectors.toList());
     }
 
-    @GetMapping("/name/{studname}")
-    public List<Book> getStudentByStudentName(@PathVariable String studname)
+    @GetMapping("/name/{author}")
+    public List<Book> getStudentByStudentName(@PathVariable String author)
     {
-        return bookrepos.findStudentByStudnameEquals(studname);
+        return bookrepos.findBookByAuthors(author);
     }
 }

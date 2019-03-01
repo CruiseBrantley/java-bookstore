@@ -12,46 +12,41 @@ public class Authors
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Authorid;
+    private long authorid;
 
-    @Column(name = "authorname")
-    private String authorname;
+    @Column(name = "firstname")
+    private String firstname;
 
-    @OneToMany(mappedBy = "author")
-    @JsonIgnoreProperties("authors")
-    private Set<Section> sections = new HashSet<>();
+    @Column(name = "lastname")
+    private String lastname;
 
-    public Authors()
-    {
-    }
+    @ManyToMany
+    @JoinTable(name = "bookid",
+            joinColumns = {@JoinColumn(name = "bookid")},
+            inverseJoinColumns = {@JoinColumn(name = "authorid")})
+    @JsonIgnoreProperties("bookid")
+    private Set<Book> books = new HashSet<>();
+
+    public Authors(){}
 
     public long getAuthorid()
     {
-        return Authorid;
+        return authorid;
     }
 
     public void setAuthorid(long Authorid)
     {
-        this.Authorid = Authorid;
+        this.authorid = Authorid;
     }
 
     public String getauthorname()
     {
-        return authorname;
+        return firstname + lastname;
     }
 
-    public void setauthorname(String authorname)
+    public void setauthorname(String firstname, String lastname)
     {
-        this.authorname = authorname;
-    }
-
-    public Set<Section> getsections()
-    {
-        return sections;
-    }
-
-    public void setsections(Set<Section> sections)
-    {
-        this.sections = sections;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 }

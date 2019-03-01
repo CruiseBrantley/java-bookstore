@@ -31,9 +31,9 @@ public class Authorcontroller
         return authorrepos.findById(authorid).stream().collect(Collectors.toList());
     }
 
-    @GetMapping(value = "/name/{authorname}")
-    public List<Authors> getauthorByauthorName(@PathVariable String authorname)
+    @GetMapping(value = "/name/{authorfirstname, authorlastname}")
+    public List<Authors> getauthorByauthorName(@PathVariable String authorfirstname, @PathVariable String authorlastname)
     {
-        return authorrepos.findauthorByauthornameEquals(authorname);
+        return authorrepos.findAuthorsByFirstnameAndLastname(authorfirstname, authorlastname);
     }
 }

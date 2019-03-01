@@ -14,14 +14,25 @@ public class Book
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookid;
 
-    private String bookname;
+    private String booktitle;
 
-    @ManyToMany
-    @JoinTable(name = "booksections",
+    private String ISBN;
+
+    private int copy;
+
+    @OneToMany
+    @JoinTable(name = "sectionid",
             joinColumns = {@JoinColumn(name = "bookid")},
             inverseJoinColumns = {@JoinColumn(name = "sectionid")})
     @JsonIgnoreProperties("book")
-    private Set<Section> sections = new HashSet<>();
+    private Set<Section> sectionid = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "authorid",
+            joinColumns = {@JoinColumn(name = "authorid")},
+            inverseJoinColumns = {@JoinColumn(name = "bookid")})
+    @JsonIgnoreProperties("authorid")
+    private Set<Authors> authors = new HashSet<>();
 
     public Book()
     {
@@ -37,23 +48,23 @@ public class Book
         this.bookid = bookid;
     }
 
-    public String getBookname()
+    public String getBooktitle()
     {
-        return bookname;
+        return booktitle;
     }
 
-    public void setBookname(String bookname)
+    public void setBooktitle(String booktitle)
     {
-        this.bookname = bookname;
+        this.booktitle = booktitle;
     }
 
-    public Set<Section> getsections()
+    public Set<Section> getsectionid()
     {
-        return sections;
+        return sectionid;
     }
 
-    public void setsections(Set<Section> sections)
+    public void setsectionid(Set<Section> sectionid)
     {
-        this.sections = sections;
+        this.sectionid = sectionid;
     }
 }

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface Authorrepository extends JpaRepository<Authors, Long>
 {
-    List<Authors> findauthorByauthornameEquals(String name);
+    List<Authors> findAuthorsByFirstnameAndLastname(String firstname, String lastname);
 }
 

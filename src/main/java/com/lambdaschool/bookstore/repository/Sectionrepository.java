@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface Sectionrepository extends JpaRepository<Section, Long>
 {
-    List<Section> findsectionsBysectionnameEquals(String name);
+    List<Section> findSectionByNameEquals(String name);
 
     @Transactional
     @Modifying

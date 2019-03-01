@@ -34,6 +34,6 @@ public class Sectioncontroller
     @GetMapping(value = "/name/{sectionname}")
     public List<Section> getSectionBysectionname(@PathVariable String sectionname)
     {
-        return sectionrepos.findsectionsBysectionnameEquals(sectionname);
+        return sectionrepos.findSectionByNameEquals(sectionname);
     }
 }
